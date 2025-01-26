@@ -34,7 +34,8 @@ def example_get():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # app.run(debug=True)
+    app.run(host='0.0.0.0')
 
 
 # port 지정하는 방법 찾아야함(현재 5000포트 고정)
