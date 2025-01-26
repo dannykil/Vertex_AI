@@ -27,6 +27,7 @@ def example_post():
 def example_get():
     host = socket.gethostbyname(socket.gethostname()) 
     print(host)
+    print(socket.gethostname())
 
     return host
 
