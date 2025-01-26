@@ -4,7 +4,7 @@ RUN pip3 install flask
 # WORKDIR /root
 WORKDIR /app
 COPY . .
-RUN cd /app/Vertex_AI
+# RUN cd /app/Vertex_AI
 RUN pwd
 RUN ls -al
 # RUN FLASK_APP=test_api.py flask run
