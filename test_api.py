@@ -113,6 +113,11 @@ def search_sample():
     )
 
     response = client.search(request)
+
+    responses = response.pages
+    for document in responses:
+        # Process each document 
+        print(document) 
     
     # print(response)
 
