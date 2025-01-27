@@ -114,10 +114,14 @@ def search_sample():
     response = client.search(request)
     # print(response)
 
-    return response
+    # TypeError: The view function did not return a valid response. 
+    # The return type must be a string, dict, list, tuple with headers or status, Response instance, or WSGI callable, but it was a SearchPager.
+    # return response
 
     # TypeError: Object of type SearchPager is not JSON serializable
     # return jsonify(response)
+
+    return str(response)
 
 
 if __name__ == '__main__':
