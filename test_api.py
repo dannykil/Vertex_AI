@@ -113,6 +113,7 @@ def search_sample():
     )
 
     response = client.search(request)
+    
     # print(response)
 
     # TypeError: The view function did not return a valid response. 
@@ -125,12 +126,42 @@ def search_sample():
     # TypeError: Object of type SearchPager is not JSON serializable
     # return json.dumps(response)
 
-    # succeed
-    # return str(response)
     # return [response]
     # return type(response)
     # return response.SearchPager
-    return response.SearchResponse
+    # return response.SearchResponse
+
+    # succeed
+    # return str(response)
+    return search_pager_to_json(response)
+
+
+def search_pager_to_json(search_pager: SearchPager) -> list[dict]:
+#   """
+#   Converts a SearchPager object to a list of dictionaries.
+
+#   Args:
+#     search_pager: The SearchPager object to convert.
+
+#   Returns:
+#     A list of dictionaries, where each dictionary represents a document.
+#   """
+
+  results = []
+
+  for document in search_pager:
+    document_dict = {
+        "content": document.content,
+        "id": document.id,
+        "metadata": document.metadata,
+        "mime_type": document.mime_type,
+        "score": document.score, 
+    }
+    results.append(document_dict)
+    
+  return results
+
+
 
 if __name__ == '__main__':
     # app.run(debug=True)
