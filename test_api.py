@@ -122,8 +122,8 @@ def search_sample():
     # return jsonify(response)
 
     # succeed
-    # return str(response)
-    return [response]
+    return str(response)
+    # return [response]
 
 
 if __name__ == '__main__':
