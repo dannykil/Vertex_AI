@@ -32,7 +32,7 @@ def example_get():
     print(host)
     # print(socket.gethostname())
 
-    return host + "_" + now.strftime('%Y-%m-%d %H:%M:%S')
+    return host + "_v1_" + now.strftime('%Y-%m-%d %H:%M:%S')
 
     
 
