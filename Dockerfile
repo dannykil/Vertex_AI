@@ -5,6 +5,7 @@ RUN pip3 install flask
 
 RUN pip3 install google
 RUN pip3 install --upgrade google-api-python-client
+RUN pip3 install google-cloud-discoveryengine
 
 # WORKDIR /root
 WORKDIR /app
