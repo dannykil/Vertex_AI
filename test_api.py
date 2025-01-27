@@ -114,8 +114,10 @@ def search_sample():
     response = client.search(request)
     # print(response)
 
-    # return response
-    return jsonify(response)
+    return response
+
+    # TypeError: Object of type SearchPager is not JSON serializable
+    # return jsonify(response)
 
 
 if __name__ == '__main__':
