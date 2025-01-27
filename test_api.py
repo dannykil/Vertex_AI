@@ -132,34 +132,36 @@ def search_sample():
     # return response.SearchResponse
 
     # succeed
-    # return str(response)
-    return search_pager_to_json(response)
+    return str(response.pages)
+    # return search_pager_to_json(response)
 
 
-def search_pager_to_json(search_pager: SearchPager) -> list[dict]:
-#   """
-#   Converts a SearchPager object to a list of dictionaries.
+# def search_pager_to_json(search_pager: SearchPager) -> list[dict]:
+# #   """
+# #   Converts a SearchPager object to a list of dictionaries.
 
-#   Args:
-#     search_pager: The SearchPager object to convert.
+# #   Args:
+# #     search_pager: The SearchPager object to convert.
 
-#   Returns:
-#     A list of dictionaries, where each dictionary represents a document.
-#   """
+# #   Returns:
+# #     A list of dictionaries, where each dictionary represents a document.
+# #   """
 
-  results = []
+#   results = []
 
-  for document in search_pager:
-    document_dict = {
-        "content": document.content,
-        "id": document.id,
-        "metadata": document.metadata,
-        "mime_type": document.mime_type,
-        "score": document.score, 
-    }
-    results.append(document_dict)
-    
-  return results
+#   for document in search_pager:
+
+#     document_dict = {
+#         "content": document.content,
+#         "id": document.id,
+#         "metadata": document.metadata,
+#         "mime_type": document.mime_type,
+#         "score": document.score, 
+#     }
+
+#     results.append(document_dict)
+
+#   return results
 
 
 
