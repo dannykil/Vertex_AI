@@ -124,8 +124,8 @@ def search_sample():
     # succeed
     # return str(response)
     # return [response]
-    return json.dumps(response)
-
+    # return json.dumps(response)
+    return type(response)
 
 if __name__ == '__main__':
     # app.run(debug=True)
