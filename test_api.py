@@ -114,10 +114,10 @@ def search_sample():
 
     response = client.search(request)
 
-    responses = response.pages
-    for document in responses:
-        # Process each document 
-        print(document) 
+    # responses = response.pages
+    # for document in responses:
+    #     # Process each document 
+    #     print(document) 
     
     # print(response)
 
@@ -136,11 +136,13 @@ def search_sample():
     # return response.SearchPager
     # return response.SearchResponse
     # return search_pager_to_json(response)
+    # return json.dumps(response.pages)
 
     # succeed
     # return str(response)
     # return str(response.pages)
-    return json.dumps(response.pages)
+    return search_pager_to_json(response.pages)
+    
     
 
 
@@ -171,6 +173,23 @@ def search_sample():
 
 #   return results
 
+def search_pager_to_json(search_pager):
+
+  results = []
+
+  for document in search_pager:
+
+    document_dict = {
+        "content": document.content,
+        "id": document.id,
+        "metadata": document.metadata,
+        "mime_type": document.mime_type,
+        "score": document.score, 
+    }
+
+    results.append(document_dict)
+
+  return json.dumps(results)
 
 
 if __name__ == '__main__':
