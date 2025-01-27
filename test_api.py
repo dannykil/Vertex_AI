@@ -122,11 +122,15 @@ def search_sample():
     # TypeError: Object of type SearchPager is not JSON serializable
     # return jsonify(response)
 
+    # TypeError: Object of type SearchPager is not JSON serializable
+    # return json.dumps(response)
+
     # succeed
     # return str(response)
     # return [response]
-    return json.dumps(response)
     # return type(response)
+    return response.SearchPager
+    # return response.SearchResponse
 
 if __name__ == '__main__':
     # app.run(debug=True)
