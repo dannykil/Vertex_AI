@@ -4,8 +4,9 @@ steps:
   - name: "gcr.io/cloud-builders/git"
     args:
       - clone
-      - --recurse-submodules
-      - git@github.com:dannykil/Vertex_AI.git
+      - https://github.com/dannykil/Vertex_AI.git
+      # - --recurse-submodules
+      # - git@github.com:dannykil/Vertex_AI.git
     # volumes:
     #   - name: ssh
     #     path: /root/.ssh
