@@ -1,5 +1,8 @@
 from flask import Flask, request, jsonify
 import socket
+from datetime import datetime
+
+now = datetime.now()
 
 app = Flask(__name__)
 
@@ -29,7 +32,7 @@ def example_get():
     print(host)
     # print(socket.gethostname())
 
-    return host + "_v1"
+    return host + "_" + now.strftime('%Y-%m-%d %H:%M:%S')
 
     
 
