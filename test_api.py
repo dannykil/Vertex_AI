@@ -111,7 +111,7 @@ def search_sample():
         ),
     )
 
-    response = client.search(request)
+    response[] = client.search(request)
     # print(response)
 
     # TypeError: The view function did not return a valid response. 
@@ -121,7 +121,9 @@ def search_sample():
     # TypeError: Object of type SearchPager is not JSON serializable
     # return jsonify(response)
 
-    return str(response)
+    # succeed
+    # return str(response)
+    return response
 
 
 if __name__ == '__main__':
