@@ -1,6 +1,7 @@
 # 간단한 텍스트 출력이므로 가장 가벼운 apline버전을 사용하였다.
 FROM python:3.9-alpine			
 RUN pip3 install flask
+RUN pip3 install google
 # WORKDIR /root
 WORKDIR /app
 COPY . /app
