@@ -135,10 +135,13 @@ def search_sample():
     # return type(response)
     # return response.SearchPager
     # return response.SearchResponse
+    # return search_pager_to_json(response)
 
     # succeed
-    return str(response.pages)
-    # return search_pager_to_json(response)
+    # return str(response)
+    # return str(response.pages)
+    return json.dumps(response.pages)
+    
 
 
 # def search_pager_to_json(search_pager: SearchPager) -> list[dict]:
