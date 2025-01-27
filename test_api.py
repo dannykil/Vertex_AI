@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import socket
 from datetime import datetime
+import json
 
 from typing import List
 from google.api_core.client_options import ClientOptions
@@ -124,8 +125,8 @@ def search_sample():
     # succeed
     # return str(response)
     # return [response]
-    # return json.dumps(response)
-    return type(response)
+    return json.dumps(response)
+    # return type(response)
 
 if __name__ == '__main__':
     # app.run(debug=True)
