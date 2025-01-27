@@ -129,8 +129,8 @@ def search_sample():
     # return str(response)
     # return [response]
     # return type(response)
-    return response.SearchPager
-    # return response.SearchResponse
+    # return response.SearchPager
+    return response.SearchResponse
 
 if __name__ == '__main__':
     # app.run(debug=True)
