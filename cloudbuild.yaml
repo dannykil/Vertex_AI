@@ -1,6 +1,8 @@
 steps:
   # Docker Build
-  - name: "gcr.io/cloud-builders/docker"
+  # us-central1-docker.pkg.dev/gen-lang-client-0274842719/container-dev-web/web@sha256:01ee1939029070a16dacb7836b31d6e9ccd3eddbcf2a322ad7169b27e70d4c6f
+  # - name: "gcr.io/cloud-builders/docker"
+  - name: "us-central1-docker.pkg.dev/gen-lang-client-0274842719/container-dev-web/docker"
     args:
       [
         "build",
@@ -10,7 +12,8 @@ steps:
       ]
 
   # Docker Push
-  - name: "gcr.io/cloud-builders/docker"
+  # - name: "gcr.io/cloud-builders/docker"
+  - name: "us-central1-docker.pkg.dev/gen-lang-client-0274842719/container-dev-web/docker"
     args:
       [
         "push",
