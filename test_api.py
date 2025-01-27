@@ -112,9 +112,10 @@ def search_sample():
     )
 
     response = client.search(request)
-    print(response)
+    # print(response)
 
-    return response
+    # return response
+    return jsonify(response)
 
 
 if __name__ == '__main__':
