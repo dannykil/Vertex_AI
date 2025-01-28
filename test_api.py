@@ -179,7 +179,7 @@ def search_pager_to_json(search_pager):
 
   results = []
 
-  for depth1 in search_pager:
+  for document in search_pager:
 
     document_dict = {
         "content": str(document.results)
