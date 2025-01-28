@@ -183,7 +183,7 @@ def search_pager_to_json(search_pager):
     for depth2 in depth1.results:
 
         document_dict = {
-            "id": str(depth2.id)
+            "data1": str(depth2[0])
         }
 
     results.append(document_dict)
