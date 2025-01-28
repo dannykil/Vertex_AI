@@ -180,16 +180,32 @@ def search_pager_to_json(search_pager):
   results = []
 
   for depth1 in search_pager:
-    for depth2 in depth1.results:
 
-        document_dict = {
-            "data1": str(depth2[0])
-        }
+    document_dict = {
+        "content": str(document.results)
+    }
 
     results.append(document_dict)
 
-  return json.dumps(results)
+  return json.dumps(results[0])
 
+# 방법2
+# def search_pager_to_json(search_pager):
+
+#   results = []
+
+#   for depth1 in search_pager:
+#     for depth2 in depth1.results:
+
+#         document_dict = {
+#             "id": str(depth2.id)
+#         }
+
+#     results.append(document_dict)
+
+#   return json.dumps(results)
+
+# 방법1
 # def search_pager_to_json(search_pager):
 
 #   results = []
