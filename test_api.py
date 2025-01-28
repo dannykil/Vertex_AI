@@ -180,11 +180,12 @@ def search_pager_to_json(search_pager):
   for document in search_pager:
 
     document_dict = {
-        "content": document.content,
-        "id": document.id,
-        "metadata": document.metadata,
-        "mime_type": document.mime_type,
-        "score": document.score, 
+        "content": document.results
+        # "content": document.content,
+        # "id": document.id,
+        # "metadata": document.metadata,
+        # "mime_type": document.mime_type,
+        # "score": document.score, 
     }
 
     results.append(document_dict)
