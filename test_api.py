@@ -173,26 +173,43 @@ def search_sample():
 
 #   return results
 
+
+
 def search_pager_to_json(search_pager):
 
   results = []
 
-  for document in search_pager:
+  for depth1 in search_pager:
+    for depth2 in depth1.results:
 
-    document_dict = {
-        "content": str(document.results)
-
-        # backup
-        # "content": document.content,
-        # "id": document.id,
-        # "metadata": document.metadata,
-        # "mime_type": document.mime_type,
-        # "score": document.score, 
-    }
+        document_dict = {
+            "id": str(depth2.id)
+        }
 
     results.append(document_dict)
 
   return json.dumps(results)
+
+# def search_pager_to_json(search_pager):
+
+#   results = []
+
+#   for document in search_pager:
+
+#     document_dict = {
+#         "content": str(document.results)
+
+#         # backup
+#         # "content": document.content,
+#         # "id": document.id,
+#         # "metadata": document.metadata,
+#         # "mime_type": document.mime_type,
+#         # "score": document.score, 
+#     }
+
+#     results.append(document_dict)
+
+#   return json.dumps(results)
 
 
 if __name__ == '__main__':
