@@ -2,6 +2,7 @@ steps:
   # Clone the repository
   # https://github.com/dannykil/Vertex_AI.git
   - name: "gcr.io/cloud-builders/git"
+    id: clone
     args:
       - clone
       - https://github.com/dannykil/Vertex_AI.git
@@ -14,6 +15,7 @@ steps:
   # Docker Build
   # us-central1-docker.pkg.dev/gen-lang-client-0274842719/container-dev-web/web@sha256:01ee1939029070a16dacb7836b31d6e9ccd3eddbcf2a322ad7169b27e70d4c6f
   - name: "gcr.io/cloud-builders/docker"
+    id: build
     # - name: "us-central1-docker.pkg.dev/gen-lang-client-0274842719/container-dev-web/docker"
     args:
       [
@@ -25,6 +27,7 @@ steps:
 
   # Docker Push
   - name: "gcr.io/cloud-builders/docker"
+    id: push
     # - name: "us-central1-docker.pkg.dev/gen-lang-client-0274842719/container-dev-web/docker"
     args:
       [
@@ -34,6 +37,7 @@ steps:
 
   # Entrypoint, timeout and environment variables
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    id: deploy
     entrypoint: "gcloud"
     timeout: 240s
     args:
@@ -45,6 +49,9 @@ steps:
         "--container-image",
         "us-central1-docker.pkg.dev/${PROJECT_ID}/container-dev-web/web:tag1",
       ]
+    env:
+      - "CLOUDSDK_COMPUTE_REGION=us-central1"
+      - "CLOUDSDK_COMPUTE_ZONE=us-central1-a"
 
 options:
   logging: CLOUD_LOGGING_ONLY
