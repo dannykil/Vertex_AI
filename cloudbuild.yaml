@@ -37,7 +37,7 @@ steps:
 
   # Entrypoint, timeout and environment variables
   - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
-    id: deploy
+    id: Deploy
     entrypoint: "gcloud"
     timeout: 240s
     args:
