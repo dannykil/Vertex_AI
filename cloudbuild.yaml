@@ -32,6 +32,20 @@ steps:
         "us-central1-docker.pkg.dev/${PROJECT_ID}/container-dev-web/web:tag1",
       ]
 
+  # Entrypoint, timeout and environment variables
+  - name: "gcr.io/google.com/cloudsdktool/cloud-sdk"
+    entrypoint: "gcloud"
+    timeout: 240s
+    args:
+      [
+        "compute",
+        "instances",
+        "create-with-container",
+        "my-vm-name",
+        "--container-image",
+        "us-central1-docker.pkg.dev/${PROJECT_ID}/container-dev-web/web:tag1",
+      ]
+
 options:
   logging: CLOUD_LOGGING_ONLY
 
