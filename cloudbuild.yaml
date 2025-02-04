@@ -36,6 +36,7 @@ steps:
       ]
 
   # Entrypoint, timeout and environment variables
+  # 쌍따옴표/홀따옴표 자동 변경 설정
   # https://awesome-soo.tistory.com/50
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     id: deploy
