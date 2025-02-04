@@ -13,7 +13,7 @@ steps:
       [
         'build',
         '-t',
-        'us-central1-docker.pkg.dev/${PROJECT_ID}/container-dev-web/web/web:$COMMIT_SHA',
+        'us-central1-docker.pkg.dev/${PROJECT_ID}/container-dev-web/web:$COMMIT_SHA',
         '.',
       ]
 
@@ -23,10 +23,11 @@ steps:
     args:
       [
         'push',
-        'us-central1-docker.pkg.dev/${PROJECT_ID}/container-dev-web/web/web:$COMMIT_SHA',
+        'us-central1-docker.pkg.dev/${PROJECT_ID}/container-dev-web/web:$COMMIT_SHA',
       ]
 
   # Entrypoint, timeout and environment variables
+  # docker pull us-central1-docker.pkg.dev/gen-lang-client-0274842719/container-dev-web/web:305d6893e21a696ab272abe09a2a9466fb5ced25
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     id: deploy
     entrypoint: 'gcloud'
@@ -35,11 +36,13 @@ steps:
       - 'deploy'
       - 'dev-web'
       - '--image'
-      - 'gcr.io/$PROJECT_ID/container-dev-web/web/web:$COMMIT_SHA'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/container-dev-web/web:$COMMIT_SHA'
       - '--region'
       - 'us-central1'
+      # - 'gcr.io/$PROJECT_ID/container-dev-web/web:$COMMIT_SHA'
+
 images:
-  - 'gcr.io/$PROJECT_ID/container-dev-web/web/web:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/container-dev-web/web:$COMMIT_SHA'
 
 options:
   logging: CLOUD_LOGGING_ONLY
