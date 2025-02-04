@@ -40,3 +40,6 @@ steps:
       - 'us-central1'
 images:
   - 'gcr.io/$PROJECT_ID/container-dev-web/web:$COMMIT_SHA'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
