@@ -40,7 +40,6 @@ steps:
   # https://awesome-soo.tistory.com/50
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     id: deploy
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     timeout: 240s
     args:
