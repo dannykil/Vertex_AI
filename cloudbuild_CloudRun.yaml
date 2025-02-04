@@ -33,7 +33,7 @@ steps:
     args:
       - 'run'
       - 'deploy'
-      - 'dev-web'
+      - 'web'
       - '--image'
       - 'gcr.io/$PROJECT_ID/container-dev-web/web:$COMMIT_SHA'
       - '--region'
