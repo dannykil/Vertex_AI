@@ -6,14 +6,12 @@ import json
 from typing import List
 from google.api_core.client_options import ClientOptions
 from google.cloud import discoveryengine_v1 as discoveryengine
-from google.cloud import storage
+# from google.cloud import storage
 
 # Cloud Storage 클라이언트 초기화
-storage_client = storage.Client()
-bucket_name = "dev-unstructured-with-metadata"  # 실제 버킷 이름으로 변경
-bucket = storage_client.bucket(bucket_name)
-
-
+# storage_client = storage.Client()
+# bucket_name = "dev-unstructured-with-metadata"  # 실제 버킷 이름으로 변경
+# bucket = storage_client.bucket(bucket_name)
 
 # bucket_name = "your-bucket-name"
 # The path to your file to upload
@@ -21,15 +19,12 @@ bucket = storage_client.bucket(bucket_name)
 # The ID of your GCS object
 # destination_blob_name = "storage-object-name"
 
-storage_client = storage.Client()
+# storage_client = storage.Client()
 # bucket = storage_client.bucket(bucket_name)
 # blob = bucket.blob(destination_blob_name)
-bucket = storage_client.bucket("dev-unstructured-with-metadata")
+# bucket = storage_client.bucket("dev-unstructured-with-metadata")
 # blob = bucket.blob(destination_blob_name)
-source_blob_name = "Contents/20250212.pdf"
-
-
-
+# source_blob_name = "Contents/20250212.pdf"
 
 
 now = datetime.now()
@@ -279,8 +274,8 @@ def process_event():
         # blob.upload_from_string(json.dumps(response_data), content_type="application/json")
         # print(response_data)
 
-        blob = bucket.blob(source_blob_name)
-        blob.download_to_filename("response.json")
+        # blob = bucket.blob(source_blob_name)
+        # blob.download_to_filename("response.json")
 
         return jsonify({'message': 'Event received and processed and file name is : {}'.format(file.get('name'))}), 200
     else:
