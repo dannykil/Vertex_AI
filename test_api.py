@@ -13,6 +13,25 @@ storage_client = storage.Client()
 bucket_name = "dev-unstructured-with-metadata"  # 실제 버킷 이름으로 변경
 bucket = storage_client.bucket(bucket_name)
 
+
+
+# bucket_name = "your-bucket-name"
+# The path to your file to upload
+# source_file_name = "local/path/to/file"
+# The ID of your GCS object
+# destination_blob_name = "storage-object-name"
+
+storage_client = storage.Client()
+# bucket = storage_client.bucket(bucket_name)
+# blob = bucket.blob(destination_blob_name)
+bucket = storage_client.bucket("dev-unstructured-with-metadata")
+# blob = bucket.blob(destination_blob_name)
+source_blob_name = "Contents/20250212.pdf"
+
+
+
+
+
 now = datetime.now()
 
 app = Flask(__name__)
@@ -256,8 +275,12 @@ def process_event():
         # }
 
         # # JSON 데이터를 Cloud Storage에 저장
-        # blob = g.blob("response.json")  # 저장할 파일 이름
+        # blob = bucket.blob("response.json")  # 저장할 파일 이름
         # blob.upload_from_string(json.dumps(response_data), content_type="application/json")
+        # print(response_data)
+
+        blob = bucket.blob(source_blob_name)
+        blob.download_to_filename("response.json")
 
         return jsonify({'message': 'Event received and processed and file name is : {}'.format(file.get('name'))}), 200
     else:
