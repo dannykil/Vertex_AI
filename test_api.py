@@ -250,14 +250,14 @@ def process_event():
 
         # 원하는 작업 수행
         # Cloud Run response 데이터 가져오기 (예시)
-        response_data = {
-            "message": "Data processed successfully",
-            "result": file.get('name')
-        }
+        # response_data = {
+        #     "message": "Data processed successfully",
+        #     "result": file.get('name')
+        # }
 
-        # JSON 데이터를 Cloud Storage에 저장
-        blob = g.blob("response.json")  # 저장할 파일 이름
-        blob.upload_from_string(json.dumps(response_data), content_type="application/json")
+        # # JSON 데이터를 Cloud Storage에 저장
+        # blob = g.blob("response.json")  # 저장할 파일 이름
+        # blob.upload_from_string(json.dumps(response_data), content_type="application/json")
 
         return jsonify({'message': 'Event received and processed and file name is : {}'.format(file.get('name'))}), 200
     else:
