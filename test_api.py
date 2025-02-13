@@ -228,6 +228,31 @@ def search_pager_to_json(search_pager):
 #   return json.dumps(results)
 
 
+@app.route('/eventarc/finalized', methods=['POST'])
+def process_event():
+    event = request.get_json()
+
+    # CloudEvent 속성 확인
+    print('Event Type:', event.get('type'))
+    print('Event Source:', event.get('source'))
+
+    file = event.get('data')
+
+    if file and file.get('name') == 'metadata.ndjson':
+        print('metadata.ndjson 파일이 업로드되었습니다.')
+
+        # 원하는 작업 수행
+        # ...
+
+        return jsonify({'message': 'Event received and processed.'}), 200
+    else:
+        # metadata.ndjson 파일이 아닌 경우
+        if file:
+            print('업로드된 파일: ', file.get('name'))
+        return jsonify({'message': 'Event received but not processed.'}), 200
+
+
+
 if __name__ == '__main__':
     # app.run(debug=True)
     app.run(host='0.0.0.0')
