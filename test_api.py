@@ -244,7 +244,7 @@ def process_event():
         # 원하는 작업 수행
         # ...
 
-        return jsonify({'message': 'Event received and processed.'}), 200
+        return jsonify({'message': 'Event received and processed and file name is : {}'.format(file.get('name'))}), 200
     else:
         # metadata.ndjson 파일이 아닌 경우
         if file:
