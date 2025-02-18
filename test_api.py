@@ -11,9 +11,8 @@ from google.cloud import storage
 from google.oauth2 import service_account
 # import logger
 
-import logging
-# pip3 install google-cloud-logging
-import google.cloud.logging 
+# import logging
+# import google.cloud.logging 
 
 
 # Cloud Storage 클라이언트 초기화
@@ -72,28 +71,28 @@ def example_get():
     print(host)
     # print(socket.gethostname())
 
-    # Cloud Logging 클라이언트 초기화
-    client = google.cloud.logging.Client()
+    # # Cloud Logging 클라이언트 초기화
+    # client = google.cloud.logging.Client()
 
-    # 로거 설정
-    logger = logging.getLogger(__name__)
-    logger.setLevel(logging.INFO)  # 로그 레벨 설정 (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+    # # 로거 설정
+    # logger = logging.getLogger(__name__)
+    # logger.setLevel(logging.INFO)  # 로그 레벨 설정 (DEBUG, INFO, WARNING, ERROR, CRITICAL)
 
-    # Cloud Logging 핸들러 추가
-    handler = client.get_default_handler()
-    logger.addHandler(handler)
+    # # Cloud Logging 핸들러 추가
+    # handler = client.get_default_handler()
+    # logger.addHandler(handler)
 
-    # 로그 메시지 기록
-    logger.info("Application started.")  # INFO 레벨 로그
-    print("This message will also be logged.")  # print() 문으로 출력된 메시지도 로그에 포함 가능
+    # # 로그 메시지 기록
+    # logger.info("Application started.")  # INFO 레벨 로그
+    # print("This message will also be logged.")  # print() 문으로 출력된 메시지도 로그에 포함 가능
 
-    try:
-        result = 10 / 0
-    except ZeroDivisionError as e:
-        logger.exception("An error occurred: %s", e)  # 에러 발생 시 traceback과 함께 로그 기록
+    # try:
+    #     result = 10 / 0
+    # except ZeroDivisionError as e:
+    #     logger.exception("An error occurred: %s", e)  # 에러 발생 시 traceback과 함께 로그 기록
 
-    logger.warning("Application is running low on resources.")  # WARNING 레벨 로그
-    logger.critical("A critical error occurred. Shutting down.")  # CRITICAL 레벨 로그
+    # logger.warning("Application is running low on resources.")  # WARNING 레벨 로그
+    # logger.critical("A critical error occurred. Shutting down.")  # CRITICAL 레벨 로그
 
 
     return host + "_" + now.strftime('%Y-%m-%d %H:%M:%S') + "_v9"
