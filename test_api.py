@@ -6,12 +6,22 @@ import json
 from typing import List
 from google.api_core.client_options import ClientOptions
 from google.cloud import discoveryengine_v1 as discoveryengine
-# from google.cloud import storage
+from google.cloud import storage
+# from google.oauth2 import credentials
+from google.oauth2 import service_account
+# import logger
+
+import logging
+# pip3 install google-cloud-logging
+import google.cloud.logging 
+
 
 # Cloud Storage 클라이언트 초기화
-# storage_client = storage.Client()
-# bucket_name = "dev-unstructured-with-metadata"  # 실제 버킷 이름으로 변경
-# bucket = storage_client.bucket(bucket_name)
+storage_client = storage.Client()
+bucket_name = "dev-unstructured-with-metadata"  # 실제 버킷 이름으로 변경
+bucket = storage_client.bucket(bucket_name)
+destination_blob_name = "/"
+source_blob_name = "metadata/metadata_metadata_board.ndjson"
 
 # bucket_name = "your-bucket-name"
 # The path to your file to upload
@@ -31,6 +41,8 @@ now = datetime.now()
 
 app = Flask(__name__)
 
+# logger.LoggerFactory.create_logger()
+
 # lsof -i : 포트번호
 # FLASK_APP=test_api.py flask run
 @app.route('/api/example', methods=['POST'])
@@ -38,6 +50,8 @@ def example_post():
     # JSON 데이터를 가져옵니다.
     data = request.get_json()
     print(data)
+    # logger.LoggerFactory._LOGGER.info('ERP AR 발행 Process 및 현재 위치 - 5 depth')
+    # logger.LoggerFactory._LOGGER.info(data)
 
     # 데이터 유효성 검사
     if not data or 'name' not in data or 'age' not in data:
@@ -58,6 +72,30 @@ def example_get():
     print(host)
     # print(socket.gethostname())
 
+    # Cloud Logging 클라이언트 초기화
+    client = google.cloud.logging.Client()
+
+    # 로거 설정
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)  # 로그 레벨 설정 (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+
+    # Cloud Logging 핸들러 추가
+    handler = client.get_default_handler()
+    logger.addHandler(handler)
+
+    # 로그 메시지 기록
+    logger.info("Application started.")  # INFO 레벨 로그
+    print("This message will also be logged.")  # print() 문으로 출력된 메시지도 로그에 포함 가능
+
+    try:
+        result = 10 / 0
+    except ZeroDivisionError as e:
+        logger.exception("An error occurred: %s", e)  # 에러 발생 시 traceback과 함께 로그 기록
+
+    logger.warning("Application is running low on resources.")  # WARNING 레벨 로그
+    logger.critical("A critical error occurred. Shutting down.")  # CRITICAL 레벨 로그
+
+
     return host + "_" + now.strftime('%Y-%m-%d %H:%M:%S') + "_v9"
 
 
@@ -74,7 +112,8 @@ def search_sample():
 
     project_id = 'gen-lang-client-0274842719'
     location = 'global'
-    engine_id = 'app-unstructured-data_1737791181790'
+    # engine_id = 'app-unstructured-data_1737791181790'
+    engine_id = 'app-unstructured-data_1738996146048'
     search_query = 'google'
 
     # data = request.get_json()
@@ -256,11 +295,26 @@ def process_event():
     # CloudEvent 속성 확인
     print('Event Type:', event.get('type'))
     print('Event Source:', event.get('source'))
+    print('request : ', request)
+    print('request.headers : ', request.headers)
 
     file = event.get('data')
 
     if file and file.get('name') == 'metadata.ndjson':
-        print('metadata.ndjson 파일이 업로드되었습니다.')
+        print('metadata.ndjson 파일이 업로드 요청되었습니다.')
+
+        # 1. 기본 사용자 인증 정보 가져오기
+        # creds, _ = credentials.default() # 오류
+        # creds = service_account.Credentials.from_service_account_file(credentials_file_path)
+
+        # # 2. 액세스 토큰 확인
+        # access_token = creds.token
+
+        # # 3. 이메일 계정 확인
+        # email = creds.service_account_email
+
+        # print('access_token : ', access_token)
+        # print('email : ', email)
 
         # 원하는 작업 수행
         # Cloud Run response 데이터 가져오기 (예시)
@@ -275,7 +329,10 @@ def process_event():
         # print(response_data)
 
         # blob = bucket.blob(source_blob_name)
-        # blob.download_to_filename("response.json")
+        blob = bucket.blob("/metadata/metadata_metadata_board.ndjson")
+        blob.download_to_filename("response.ndjson")
+        # blob = bucket.blob("metadata")
+        # blob.download_to_filename("metadata")
 
         return jsonify({'message': 'Event received and processed and file name is : {}'.format(file.get('name'))}), 200
     else:
