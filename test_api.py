@@ -11,7 +11,7 @@ from google.cloud import storage
 from google.oauth2 import service_account
 import logger
 
-import logging
+# import logging
 # import google.cloud.logging 
 
 
