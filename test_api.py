@@ -9,7 +9,7 @@ from google.cloud import discoveryengine_v1 as discoveryengine
 from google.cloud import storage
 # from google.oauth2 import credentials
 from google.oauth2 import service_account
-# import logger
+import logger
 
 import logging
 # import google.cloud.logging 
