@@ -11,7 +11,7 @@ from google.cloud import storage
 from google.oauth2 import service_account
 # import logger
 
-# import logging
+import logging
 # import google.cloud.logging 
 
 
@@ -139,6 +139,11 @@ def example_get():
 
     # logger.warning("Application is running low on resources.")  # WARNING 레벨 로그
     # logger.critical("A critical error occurred. Shutting down.")  # CRITICAL 레벨 로그
+
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
+
+    logger.info("This is an info mesage")
 
 
     return host + "_" + now.strftime('%Y-%m-%d %H:%M:%S') + "_v9"
