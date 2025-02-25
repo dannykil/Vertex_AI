@@ -145,8 +145,12 @@ def example_get():
 
     logger.info("This is an info mesage")
 
-
-    return host + "_" + now.strftime('%Y-%m-%d %H:%M:%S') + "_v9"
+    response = {
+        "message": "Success",
+        "timestamp": now.strftime('%Y-%m-%d %H:%M:%S')
+    }
+    return jsonify(response), 200  # JSON 응답과 200 OK 상태 코드 반환
+    # return host + "_" + now.strftime('%Y-%m-%d %H:%M:%S') + "_v9"
 
 
 
