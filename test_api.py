@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify
 import socket
 from datetime import datetime
 import json
+import random
+from datetime import date, timedelta
 
 from typing import List
 from google.api_core.client_options import ClientOptions
@@ -145,11 +147,35 @@ def example_get():
 
     logger.info("This is an info mesage")
 
-    response = {
-        "message": "Success",
-        "timestamp": now.strftime('%Y-%m-%d %H:%M:%S')
-    }
-    return jsonify(response), 200  # JSON 응답과 200 OK 상태 코드 반환
+    # response = {
+    #     "message": "Success",
+    #     "timestamp": now.strftime('%Y-%m-%d %H:%M:%S')
+    # }
+    # return jsonify(response), 200  # JSON 응답과 200 OK 상태 코드 반환
+
+    num_records=20
+    start_date="2025-07-26"
+    num_users=3
+
+    data = []
+    current_date = date.fromisoformat(start_date)
+    users = [chr(ord('A') + i) for i in range(num_users)]  # 사용자 A, B, C... 생성
+    events = ["Login", "View Product", "Add to Cart", "Purchase"]
+
+    for _ in range(num_records):
+        user = random.choice(users)
+        event = random.choice(events)
+        data.append({
+            "date": current_date.strftime("%Y-%m-%d"),
+            "user": user,
+            "event": event
+        })
+
+        # 날짜를 랜덤하게 증가시킴 (최대 3일)
+        days_to_add = random.randint(0, 2)
+        current_date += timedelta(days=days_to_add)
+
+    return data
     # return host + "_" + now.strftime('%Y-%m-%d %H:%M:%S') + "_v9"
 
 
