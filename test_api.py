@@ -67,6 +67,7 @@ def example_post():
         'message': f'Hello, {name}! Your age is {age}.'
     }), 200
 
+""" airflow chapter03 test file """
 @app.route('/api/getIP', methods=['GET'])
 def example_get():
     host = socket.gethostbyname(socket.gethostname()) 
@@ -177,6 +178,49 @@ def example_get():
 
     return data
     # return host + "_" + now.strftime('%Y-%m-%d %H:%M:%S') + "_v9"
+
+
+""" airflow chapter03 test file """
+""" http://localhost:5000//api/airflow/chapter03?start_date=2019-01-01&end_date=2019-01-02 """
+@app.route('/api/airflow/chapter03', methods=['GET'])
+def example_chapter03():
+    host = socket.gethostbyname(socket.gethostname()) 
+    
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
+
+    logger.info("This is an info mesage")
+
+    # response = {
+    #     "message": "Success",
+    #     "timestamp": now.strftime('%Y-%m-%d %H:%M:%S')
+    # }
+    # return jsonify(response), 200  # JSON 응답과 200 OK 상태 코드 반환
+
+    num_records=20
+    start_date="2025-07-26"
+    num_users=3
+
+    data = []
+    current_date = date.fromisoformat(start_date)
+    users = [chr(ord('A') + i) for i in range(num_users)]  # 사용자 A, B, C... 생성
+    events = ["Login", "View Product", "Add to Cart", "Purchase"]
+
+    for _ in range(num_records):
+        user = random.choice(users)
+        event = random.choice(events)
+        data.append({
+            "date": current_date.strftime("%Y-%m-%d"),
+            "user": user,
+            "event": event
+        })
+
+        # 날짜를 랜덤하게 증가시킴 (최대 3일)
+        days_to_add = random.randint(0, 2)
+        current_date += timedelta(days=days_to_add)
+
+    return data
+
 
 
 
